@@ -1,0 +1,52 @@
+#lang sicp
+;; SICP §3.1, exercises 3.1 and 3.8; educational adaptations.
+(define (make-accumulator sum)
+  (lambda (amount)
+    (set! sum (+ sum amount))
+    sum))
+
+;; 3.8: once a zero has been seen, all later results are zero.
+(define (make-f)
+  (let ((state 1))
+    (lambda (x)
+      (set! state (* state x))
+      state)))
+
+(define (make-account balance)
+  (lambda (amount)
+    (if (or (< amount 0) (> amount balance))
+        'rejected
+        (begin (set! balance (- balance amount)) balance))))
+
+;; Small deterministic generator, NOT a source of secure randomness.
+(define (rand-update x) (modulo (+ (* 5 x) 1) 16))
+(define (make-rand seed)
+  (lambda () (set! seed (rand-update seed)) seed))
+(define (check label actual expected)
+  (if (not (equal? actual expected))
+      (error "Check failed" label actual expected)))
+(define (self-check)
+  (let ((a (make-accumulator 5)) (b (make-accumulator 5)))
+    (check '3.1-first (a 10) 15)
+    (check '3.1-second (a 10) 25)
+    (check 'independent (b 0) 5)
+    (check 'negative (a -30) -5))
+  ;; let* fixes sequencing independently of the host operand order.
+  (let* ((f (make-f)) (left (f 0)) (right (f 1)))
+    (check '3.8-left-first (+ left right) 0))
+  (let* ((f (make-f)) (right (f 1)) (left (f 0)))
+    (check '3.8-right-first (+ left right) 1))
+  (let* ((a (make-account 100)) (alias a) (b (make-account 100)))
+    (check 'withdraw (a 40) 60)
+    (check 'shared-identity (alias 10) 50)
+    (check 'distinct-state (b 10) 90)
+    (check 'overdraft (a 51) 'rejected)
+    (check 'negative-withdraw (a -1) 'rejected)
+    (check 'unchanged (a 0) 50))
+  (let ((r1 (make-rand 1)) (r2 (make-rand 1)))
+    (check 'random-first (r1) 6)
+    (check 'random-second (r1) 15)
+    (check 'random-independent (r2) 6)
+    (check 'pure-transition (rand-update (rand-update 1)) 15))
+  (display "03.01: all checks passed") (newline))
+(self-check)

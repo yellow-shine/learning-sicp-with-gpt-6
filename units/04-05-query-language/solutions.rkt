@@ -1,0 +1,47 @@
+#lang sicp
+(#%require "../04-01-metacircular/evaluator.rkt" "query-core.rkt" "personnel.rkt")
+(define (self-check)
+  (let ((db (make-query-system #f 1000)))
+    (install-statements! db personnel)
+    (check 'exercise-4.55a
+           (stream-take (db 'query '(supervisor ?person (Bitdiddle Ben))) 10)
+           '((supervisor (Tweakit Lem E) (Bitdiddle Ben))
+             (supervisor (Fect Cy D) (Bitdiddle Ben))
+             (supervisor (Hacker Alyssa P) (Bitdiddle Ben))))
+    (check 'exercise-4.55b
+           (stream-take (db 'query '(job ?person (accounting . ?job))) 10)
+           '((job (Cratchet Robert) (accounting scrivener))
+             (job (Scrooge Eben) (accounting chief accountant))))
+    (check 'exercise-4.55c
+           (stream-take (db 'query '(address ?person (Slumerville . ?address))) 10)
+           '((address (Aull DeWitt) (Slumerville (Onion Square) 5))
+             (address (Reasoner Louis) (Slumerville (Pine Tree Road) 80))
+             (address (Bitdiddle Ben) (Slumerville (Ridge Road) 10))))
+    (check 'unknown-fact (stream-take (db 'query '(job nobody ?job)) 1) '())
+    (check 'empty-and (stream-take (db 'query '(and)) 2) '((and)))
+    (check 'empty-or (stream-take (db 'query '(or)) 2) '())
+    (check 'negation-as-failure
+           (length (stream-take (db 'query '(and (supervisor ?p (Bitdiddle Ben))
+                                               (not (job ?p (computer programmer))))) 10)) 1)
+    (check 'unsafe-negation-order
+           (stream-take (db 'query '(and (not (job ?p (computer programmer)))
+                                        (supervisor ?p (Bitdiddle Ben)))) 10) '())
+    (check 'host-predicate
+           (length (stream-take (db 'query '(and (salary ?p ?n) (lisp-value > ?n 70000))) 10)) 2)
+    (check-error 'unbound-predicate (lambda () (db 'query '(lisp-value > ?n 70000))))
+    (check-error 'no-host-eval (lambda () (db 'query '(lisp-value system "anything"))))
+    (db 'assert! good-outranked)
+    (check 'good-rule (stream-take (db 'query '(outranked-by (Bitdiddle Ben) ?who)) 10)
+           '((outranked-by (Bitdiddle Ben) (Warbucks Oliver)))))
+  (check 'repeated-pattern (pattern-match '(pair ?x ?x) '(pair a b) '()) 'failed)
+  (check 'variable-chain (instantiate '(?x ?y) (unify '(?x 3) '(?y ?y) '())) '(3 3))
+  (check 'occurs-check (unify '?x '(f ?x) '()) 'failed)
+  (let ((db (make-query-system #f 80)))
+    (install-statements! db personnel) (db 'assert! bad-outranked)
+    (let ((answers (db 'query '(outranked-by (Bitdiddle Ben) ?who))))
+      (check 'exercise-4.64-first (stream-car answers)
+             '(outranked-by (Bitdiddle Ben) (Warbucks Oliver)))
+      ;; Stop a real looping deduction using a budget, not an infinite CLI run.
+      (check-error 'exercise-4.64-loop (lambda () (stream-take answers 20)))))
+  (display "04.05: all checks passed") (newline))
+(self-check)
