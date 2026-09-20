@@ -1,0 +1,214 @@
+{
+  "main": {
+    "id": "11b9ba917987aba5",
+    "type": "split",
+    "children": [
+      {
+        "id": "bdfeba342451cb19",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "2746c331071ddb7b",
+            "type": "leaf",
+            "state": {
+              "type": "empty",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "New tab"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "37287521ad64d34a",
+    "type": "split",
+    "children": [
+      {
+        "id": "a2b88db58ea0e83e",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "94968b9d3df9e72c",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "7f306ada43232d75",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "d3d9be3a3062593f",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "8ccc4707c8a28c99",
+    "type": "split",
+    "children": [
+      {
+        "id": "006ea543d42e3833",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "2f7ad9a4b03dca62",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks"
+            }
+          },
+          {
+            "id": "7e27482e365a2338",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "notes-by-gpt/10B.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links"
+            }
+          },
+          {
+            "id": "9450e4d2d52a1496",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "3d2590709376fac2",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "All properties"
+            }
+          },
+          {
+            "id": "5ec0b838c544cd61",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline"
+            }
+          }
+        ],
+        "currentTab": 4
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "bases:Create new base": false
+    }
+  },
+  "active": "2746c331071ddb7b",
+  "lastOpenFiles": [
+    "notes-by-gpt/1B.md",
+    "notes-by-gpt/10B.存储分配与垃圾回收.md",
+    "notes-by-gpt/10A.编译与指令序列生成.md",
+    "notes-by-gpt/9B.显式控制求值器.md",
+    "notes-by-gpt/9A.寄存器机器与计算过程.md",
+    "notes-by-gpt/8B.查询系统的实现与合一.md",
+    "notes-by-gpt/8A.逻辑程序设计与查询语言.md",
+    "notes-by-gpt/7B.元循环求值器的扩展与语言设计.md",
+    "notes-by-gpt/7A.元循环求值器的构造.md",
+    "notes-by-gpt/6B.无穷流与时间建模.md",
+    "notes-by-gpt/6A.流与延迟求值.md",
+    "notes-by-gpt/5B.计算对象与数字电路模拟.md",
+    "notes-by-gpt/5A.赋值、状态与副作用.md",
+    "notes-by-gpt/4B.通用运算与数据导向设计.md",
+    "notes-by-gpt/4A.模式匹配与规则替换.md",
+    "notes-by-gpt/3B.符号求导与引用.md",
+    "notes-by-gpt/3A.图形语言与元语言抽象.md",
+    "notes-by-gpt/2B.复合数据与数据抽象.md",
+    "notes-by-gpt/2A.高阶过程与计算抽象.md",
+    "notes-by-gpt/1B.过程与计算过程及代换模型.md",
+    "notes-by-gpt/1A.Lisp入门与复杂度控制.md",
+    "notes-by-gpt/1A.md",
+    "notes-by-gpt/10B.md",
+    "notes-by-gpt/10A.md",
+    "notes-by-gpt/9B.md",
+    "notes-by-gpt/9A.md"
+  ]
+}
